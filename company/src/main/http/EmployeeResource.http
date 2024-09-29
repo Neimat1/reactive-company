@@ -1,0 +1,28 @@
+### Get All Employees
+GET {{url}}/employees
+Content-Type: */*
+
+### Add Employee
+POST {{url}}/api/employees
+
+{
+    "name": "Hady",
+    "position": "Software developer",
+    "department": {
+    "id":51,
+    "departmentName": "CS"
+  }
+}
+
+### Delete Employee by ID
+DELETE {{url}}/api/employees/1
+
+
+### Get Employee by ID
+GET {{url}}/api/employees/51
+
+### Update Postion for Emplyee By ID
+PUT {{url}}/api/employees/51
+
+Sr.Software Engineer
+

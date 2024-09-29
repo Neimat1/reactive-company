@@ -1,0 +1,160 @@
+---
+openapi: 3.0.3
+info:
+  title: Company Microservice
+  description: Service-One which has CRUD operations for Employee
+  version: "1.0"
+tags:
+- name: Department  Endpoints
+- name: Employee CRUD Endpoints
+paths:
+  /api/departments:
+    get:
+      tags:
+      - Department  Endpoints
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Department'
+  /api/departments/{department_name}:
+    get:
+      tags:
+      - Department  Endpoints
+      parameters:
+      - name: department_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+  /api/employees:
+    get:
+      tags:
+      - Employee CRUD Endpoints
+      summary: Get All Employees
+      description: 'Return all employees '
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Employee'
+    post:
+      tags:
+      - Employee CRUD Endpoints
+      summary: Add Employee
+      description: Return created response for added new employee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: {}
+  /api/employees/{id}:
+    get:
+      tags:
+      - Employee CRUD Endpoints
+      summary: Get Employees By Id
+      description: 'Return employee by it''s id '
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+    put:
+      tags:
+      - Employee CRUD Endpoints
+      summary: Update Employee position by it's id
+      description: 'Return all employees '
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+    delete:
+      tags:
+      - Employee CRUD Endpoints
+      summary: Remove Employee
+      description: Return boolean response
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+components:
+  schemas:
+    Department:
+      type: object
+      properties:
+        id:
+          format: int64
+          type: integer
+        departmentName:
+          type: string
+    Employee:
+      type: object
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
+        position:
+          type: string
+        department:
+          $ref: '#/components/schemas/Department'
+  securitySchemes:
+    SecurityScheme:
+      type: http
+      description: Authentication
+      scheme: basic
