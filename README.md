@@ -6,10 +6,30 @@ This project is consisting of 2 microservices:
 1. ### **service-one**:
 
     _Microservice, that does:_
-    * Get All Employees - GET
+      * Get All Employees - GET
       * Add new Employee - POST
       * Update Employee's position - PUT
       * Remove Employee - DELETE
+      
+     _UML Diagram:_
+
+    ```mermaid
+    classDiagram
+        class Employee {
+             - name: string
+             - position: string
+             - department: Department
+             - id: Long
+        }
+         
+         
+         class Department {
+            - departmentName: string
+            - id: Long
+         }
+         
+         Department "1" --> "*" Employee
+    ```
 
 2. ### **service-two**:
    _Microservice, that consumes service-one:_
