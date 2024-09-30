@@ -12,7 +12,6 @@ _Microservice, that consumes service-one:_
 You can run your application in dev mode that enables live coding using:
 
 ```shell script
-cd ./rest-client/
 ./mvnw compile quarkus:dev
 ```
 
