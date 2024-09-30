@@ -32,6 +32,7 @@ classDiagram
 You can run your application in dev mode that enables live coding using:
 
 ```shell script
+cd ./company/
 ./mvnw compile quarkus:dev
 ```
 
