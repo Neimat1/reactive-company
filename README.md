@@ -21,11 +21,11 @@ This project is consisting of 2 microservices:
 ### To Run the project
 * clone the repo
 * Once you are in the project repo
-* Open terminal then right the commands
-  * There's an issue right now in service two
+* Open the terminal then write the commands
+  * There's an issue right now in service-two so skip this
       * cd .\rest-client\
       * ./mvnw compile quarkus:dev
-* Open another terminal page
+  * Open another terminal page to run service-one it's working fine
     * cd .\company\
     * ./mvnw compile quarkus:dev
 * Now you have
