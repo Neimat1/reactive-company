@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "ee208b0b-59ae-4140-93a6-c2a80dc8923d",
+		"name": "Rest-Client(Service-Two)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17452731"
+	},
+	"item": [
+		{
+			"name": "GetAllEmployees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/rest-client",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"rest-client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addEmployee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Fahmy\",\r\n    \"position\": \"Software developer\",\r\n    \"department\": {\r\n    \"id\":51,\r\n    \"departmentName\": \"CS\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/rest-client",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"rest-client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEmployeePosition",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "Sr.Software Engineer",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/rest-client/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"rest-client",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removeEmployee",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/rest-client/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"rest-client",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEmployee",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/rest-client/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"rest-client",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
