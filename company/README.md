@@ -36,13 +36,15 @@ You can run your application in dev mode that enables live coding using:
 ```
 
 ## Testing the endpoints
-you can test the endpoints by go to the below folder ,and you can find the http requests. 
-```
-/src/main/http
-```
+* you can test the endpoints by go to the below folder ,and you can find the http requests. 
+    ```
+    /src/main/http
+    ```
+* Run postman collection service-one
 
 
-> **_NOTE:_**
-> * now you can Swagger-Ui at <http://localhost:8080/q/swagger-ui/>.
+> **_NOTE: Service-one_**
+> * now you can open Swagger-Ui by <http://localhost:8080/q/swagger-ui/>.
 > * or generate Openapi by <http://localhost:8080/q/openapi/>.
+> * Run postman collection service-one
 
