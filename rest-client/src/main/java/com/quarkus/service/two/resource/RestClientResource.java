@@ -36,7 +36,6 @@ public class RestClientResource {
     @Operation(
             summary = "Get All Employees",
             description = "Return all employees ")
-    @Retry(delay = 3000, maxRetries = 4)
     public Uni<List<Employee>> getAllEmployees() {
         return restClientService.getAllEmployees();
     }
@@ -47,7 +46,6 @@ public class RestClientResource {
     @Operation(
             summary = "Get Employees By Id",
             description = "Return employee by it's id ")
-    @Retry(delay = 3000, maxRetries = 4)
     public Uni<Employee> getEmployeeById(@PathParam("id") Long id) {
         return restClientService.getEmployeeById(id);
     }
@@ -58,7 +56,6 @@ public class RestClientResource {
     @Operation(
             summary = "Add Employee",
             description = "Return created response for added new employee")
-    @Retry(delay = 3000, maxRetries = 4)
     public Uni<Response> addEmployee(Employee employee) {
         return restClientService.addEmployee(employee);
     }
@@ -68,7 +65,6 @@ public class RestClientResource {
     @Operation(
             summary = "Update Employee position by it's id",
             description = "Return all employees ")
-    @Retry(delay = 3000, maxRetries = 4)
     public Uni<Employee> updateEmployeePosition(@PathParam("id") Long id, String updatedPosition) {
         return restClientService.updateEmployeePosition(id, updatedPosition);
     }
@@ -79,7 +75,6 @@ public class RestClientResource {
     @Operation(
             summary = "Remove Employee",
             description = "Return boolean response")
-    @Retry(delay = 3000, maxRetries = 4)
     public Uni<Boolean> removeEmployee(@PathParam("id") Long employeeId) {
         return restClientService.removeEmployee(employeeId);
     }
