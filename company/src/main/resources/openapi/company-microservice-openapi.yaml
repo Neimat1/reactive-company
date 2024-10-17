@@ -12,6 +12,8 @@ paths:
     get:
       tags:
       - Department  Endpoints
+      summary: Get All Departments
+      description: 'Return all departments '
       responses:
         "200":
           description: OK
@@ -25,6 +27,8 @@ paths:
     get:
       tags:
       - Department  Endpoints
+      summary: Find Department By Name
+      description: Return a department by it's name
       parameters:
       - name: department_name
         in: path
