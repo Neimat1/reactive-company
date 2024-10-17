@@ -1,5 +1,4 @@
 # reactive-company
-# reactive-message
 
 This project is consisting of 2 microservices:
 
@@ -52,16 +51,16 @@ This project is consisting of 2 microservices:
     * Rest-Client (Service-two) running on 8090
     * Company (Service-one) running on 8080
 
-> **_NOTE:_**
+> **<span style="color:#2F5EBD;">NOTE</span>**
 > * you can use postman collection / http requests in each repo
     > There's a Readme file for each service
 
-> **_NOTE: Service-one_**
+> **<span style="color:#2F5EBD;">NOTE: Service-one</span>**
 > * now you can Swagger-Ui at <http://localhost:8080/q/swagger-ui/>.
 > * or generate Openapi by <http://localhost:8080/q/openapi/>.
 
 
-> **_NOTE: Service-two_**
+> **<span style="color:#2F5EBD;">NOTE: Service-Two</span>**
 > * now you can Swagger-Ui at <http://localhost:8090/q/swagger-ui/>.
 > * or generate Openapi by <http://localhost:8090/q/openapi/>.
 
