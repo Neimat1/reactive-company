@@ -39,13 +39,13 @@ This project is consisting of 2 microservices:
      * Remove Employee - DELETE
 
 ### To Run the project
+* Run Docker Engine
 * clone the repo
 * Once you are in the project repo
 * Open the terminal then write the commands
-  * There's an issue right now in service-two so skip this
-      * cd .\rest-client\
-      * ./mvnw compile quarkus:dev
-  * Open another terminal page to run service-one it's working fine
+  * cd .\rest-client\
+  * ./mvnw compile quarkus:dev
+  * Open another terminal page to run service-one
     * cd .\company\
     * ./mvnw compile quarkus:dev
 * Now you have
