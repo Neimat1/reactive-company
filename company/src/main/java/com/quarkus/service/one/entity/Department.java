@@ -1,6 +1,5 @@
 package com.quarkus.service.one.entity;
 
-import io.quarkus.hibernate.reactive.panache.PanacheEntity;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +16,11 @@ public class Department {
     }
 
     public Department(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public Department(Long id, String departmentName) {
+        this.id = id;
         this.departmentName = departmentName;
     }
 
