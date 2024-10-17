@@ -1,28 +1,29 @@
 ### Get All Employees
-GET {{url}}/api/rest-client
+GET {{url}}/rest-client
 Content-Type: */*
 
 ### Add Employee
-POST {{url}}/api/rest-client
+POST {{url}}/rest-client
+Content-Type: application/json
 
 {
-    "name": "Hady",
-    "position": "Software developer",
-    "department": {
-    "id":51,
-    "departmentName": "CS"
-  }
+  "department": {
+    "departmentName": "CS",
+    "id": 51
+  },
+  "name": "Alaa Soliman Badri",
+  "position": "Software developer"
 }
 
 ### Delete Employee by ID
-DELETE {{url}}/api/rest-client/1
+DELETE {{url}}/rest-client/251
 
 
 ### Get Employee by ID
-GET {{url}}/api/rest-client/51
+GET {{url}}/rest-client/251
 
 ### Update Postion for Emplyee By ID
-PUT {{url}}/api/rest-client/51
+PUT {{url}}/rest-client/251
 
 Sr.Software Engineer
 
