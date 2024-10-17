@@ -51,18 +51,20 @@ This project is consisting of 2 microservices:
     * Rest-Client (Service-two) running on 8090
     * Company (Service-one) running on 8080
 
-> **<span style="color:#2F5EBD;">NOTE</span>**
+> **_NOTE_**
 > * you can use postman collection / http requests in each repo
-    > There's a Readme file for each service
+> * There's a Readme file for each service
 
-> **<span style="color:#2F5EBD;">NOTE: Service-one</span>**
-> * now you can Swagger-Ui at <http://localhost:8080/q/swagger-ui/>.
+> **_NOTE: Service-one_**
+> * now you can open Swagger-Ui by <http://localhost:8080/q/swagger-ui/>.
 > * or generate Openapi by <http://localhost:8080/q/openapi/>.
+> * Run postman collection service-one
 
 
-> **<span style="color:#2F5EBD;">NOTE: Service-Two</span>**
-> * now you can Swagger-Ui at <http://localhost:8090/q/swagger-ui/>.
-> * or generate Openapi by <http://localhost:8090/q/openapi/>.
+> **_NOTE: Service-Two_**
+> * Now you can open Swagger-Ui by <http://localhost:8090/q/swagger-ui/>.
+> * Or generate Openapi by <http://localhost:8090/q/openapi/>.
+> * Run postman collection service-two
 
 
 ### Versions:
