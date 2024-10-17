@@ -20,9 +20,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 
 import java.util.List;
 
-@Path("/api/rest-client")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+@Path("/rest-client")
 public class RestClientResource {
 
 
@@ -34,6 +32,7 @@ public class RestClientResource {
     }
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Operation(
             summary = "Get All Employees",
             description = "Return all employees ")
@@ -44,6 +43,7 @@ public class RestClientResource {
 
     @GET
     @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     @Operation(
             summary = "Get Employees By Id",
             description = "Return employee by it's id ")
@@ -53,6 +53,8 @@ public class RestClientResource {
     }
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     @Operation(
             summary = "Add Employee",
             description = "Return created response for added new employee")
@@ -73,6 +75,7 @@ public class RestClientResource {
 
     @DELETE
     @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     @Operation(
             summary = "Remove Employee",
             description = "Return boolean response")
