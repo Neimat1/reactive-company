@@ -9,18 +9,14 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 @Path("/employees")
 @Tag(name = "Employee CRUD Endpoints")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class EmployeeResource {
-
 
 
     @Inject
@@ -28,6 +24,7 @@ public class EmployeeResource {
 
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Operation(
             summary = "Get All Employees",
             description = "Return all employees ")
@@ -37,6 +34,7 @@ public class EmployeeResource {
 
     @GET
     @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     @Operation(
             summary = "Get Employees By Id",
             description = "Return employee by it's id ")
@@ -45,10 +43,11 @@ public class EmployeeResource {
     }
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @Operation(
             summary = "Add Employee",
             description = "Return created response for added new employee")
-    public Uni<Response> addEmployee(Employee employee) {
+    public Uni<Response> addEmployee(@RequestBody Employee employee) {
         return repository.addEmployee(employee);
     }
 
@@ -57,12 +56,13 @@ public class EmployeeResource {
     @Operation(
             summary = "Update Employee position by it's id",
             description = "Return all employees ")
-    public Uni<Employee> updateEmployeePosition(@PathParam("id") Long id, String updatedPosition) {
+    public Uni<Employee> updateEmployeePosition(@PathParam("id") Long id, @RequestBody String updatedPosition) {
         return repository.updateEmployeePosition(id, updatedPosition);
     }
 
     @DELETE
     @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     @Operation(
             summary = "Remove Employee",
             description = "Return boolean response")
