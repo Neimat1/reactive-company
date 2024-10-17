@@ -1,7 +1,7 @@
 ### Get Department by it's name
-GET {{url}}/api/adepartments/Software Engineering
+GET {{url}}/departments/Software Engineering
 Content-Type: */*
 
 ### Get all Departments
-GET {{url}}/api/departments
+GET {{url}}/departments
 Content-Type: */*

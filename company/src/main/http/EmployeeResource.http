@@ -1,9 +1,9 @@
 ### Get All Employees
-GET {{url}}/api/employees
+GET {{url}}/employees
 Content-Type: */*
 
 ### Add Employee
-POST {{url}}/api/employees
+POST {{url}}/employees
 
 {
     "name": "Hady",
@@ -15,14 +15,14 @@ POST {{url}}/api/employees
 }
 
 ### Delete Employee by ID
-DELETE {{url}}/api/employees/1
+DELETE {{url}}/employees/1
 
 
 ### Get Employee by ID
-GET {{url}}/api/employees/51
+GET {{url}}/employees/51
 
 ### Update Postion for Emplyee By ID
-PUT {{url}}/api/employees/51
+PUT {{url}}/employees/51
 
 Sr.Software Engineer
 
