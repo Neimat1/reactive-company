@@ -17,42 +17,43 @@ public class RestClientResourceTest {
 
     @Test
     public void testGetAllEmployees() {
-        Department csDepartment = new Department(1L, "CS");
-        Department itDepartment = new Department(2L, "IT");
-
-        Employee employee1 = new Employee(1L, "Neimat Soliman", "Software Engineering", csDepartment);
-        Employee employee2 = new Employee(2L, "Tokka Ahmed", "Backed Engineering", itDepartment);
-        Employee employee3 = new Employee(3L, "Alaa Adel", "Frontend Engineering", csDepartment);
-        Employee employee4 = new Employee(4L, "Eman Salah", "AI Engineering", itDepartment);
-
-        List<Employee> employees = new ArrayList<>();
-        employees.add(employee1);
-        employees.add(employee2);
-        employees.add(employee3);
-        employees.add(employee4);
 
         given()
                 .when().get("/rest-client")
-                .then().statusCode(200).body("size()", is(employees.size()));
+                .then()
+                .statusCode(200)
+                .body("size()", is(4));
     }
 
 
     @Test
-    public void testGetEmployeeById() {
+    public void testGetEmployeeByIdSuccessScenario() {
         Long employeeId = 1L;
-        String employeeName = "Mock Data";
+        String employeeName = "Neimat Soliman";
 
         given()
                 .pathParam("id", employeeId)
-                .when().get("/rest-client/{id}")
-                .then().statusCode(200).body("name", is(employeeName));
+                .when().get("/employees/{id}")
+                .then()
+                .statusCode(200)
+                .body("name", is(employeeName));
+    }
+
+    @Test
+    public void testGetEmployeeByIdFailureScenario_IDNotExist() {
+        Long employeeId = 10000L;
+
+        given()
+                .pathParam("id", employeeId)
+                .when().get("/employees/{id}")
+                .then()
+                .statusCode(204);
     }
 
 
     @Test
-    public void testAddEmployee() {
+    public void testAddEmployeeSuccessScenario() {
         Employee mockEmployee = new Employee();
-        mockEmployee.setId(1L);
         mockEmployee.setPosition("Mock Data");
         mockEmployee.setDepartment(new Department(1L, "CS"));
         mockEmployee.setName("Mock Data");
@@ -60,37 +61,133 @@ public class RestClientResourceTest {
         given()
                 .header("Content-Type", "application/json")
                 .body(mockEmployee)
-                .when().post("/rest-client/")
+                .when().post("/employees/")
                 .then().statusCode(201);
 
     }
 
-
     @Test
-    public void testUpdateEmployeePosition() {
-        Long employeeId = 1L;
-        String updatedPosition = "Mock Data";
-        String employeeName = "Mock Data";
+    public void testAddEmployeeFailureScenario_passingEmployeeID() {
+        Department itDepartment = new Department(2L, "IT");
+        Employee existemployee = new Employee(4L, "Eman Salah", "AI Engineering", itDepartment);
+
 
         given()
                 .header("Content-Type", "application/json")
-                .pathParam("id", employeeId)
-                .queryParam("position", updatedPosition)
-                .when().get("/rest-client/{id}")
-                .then().statusCode(200).body("name", is(employeeName))
-                .body("position", is(updatedPosition));
+                .body(existemployee)
+                .when().post("/employees/")
+                .then()
+                .statusCode(400);
 
     }
 
     @Test
-    public void testRemoveEmployee() {
-        Long employeeId = 500L;
+    public void testAddEmployeeFailureScenario_missingDepartment() {
+        Employee existemployee = new Employee(4L, "Eman Salah", "AI Engineering", null);
+
+
+        given()
+                .header("Content-Type", "application/json")
+                .body(existemployee)
+                .when().post("/employees/")
+                .then()
+                .statusCode(400);
+
+    }
+
+    @Test
+    public void testAddEmployeeFailureScenario_departmentNotExist() {
+        Department isDepartment = new Department(3L, "IS");
+        Employee existemployee = new Employee(4L, "Eman Salah", "AI Engineering", isDepartment);
+
+
+        given()
+                .header("Content-Type", "application/json")
+                .body(existemployee)
+                .when().post("/employees/")
+                .then()
+                .statusCode(400);
+
+    }
+
+    @Test
+    public void testAddEmployeeFailureScenario_missingDepartmentName() {
+        Department isDepartment = new Department(3L, null);
+        Employee existemployee = new Employee(4L, "Eman Salah", "AI Engineering", isDepartment);
+
+
+        given()
+                .header("Content-Type", "application/json")
+                .body(existemployee)
+                .when().post("/employees/")
+                .then()
+                .statusCode(400);
+
+    }
+
+
+    @Test
+    public void testUpdateEmployeePositionSuccessScenario() {
+        Long employeeId = 2L;
+        String updatedPosition = "Sr. Software Engineering";
+        String employeeName = "Tokka Ahmed";
+
+        given()
+                .header("Content-Type", "application/json")
+                .pathParam("id", employeeId)
+                .body(updatedPosition)
+                .when().put("/employees/{id}")
+                .then()
+                .statusCode(200);
+
+
+        given()
+                .pathParam("id", employeeId)
+                .when().get("/employees/{id}")
+                .then()
+                .statusCode(200)
+                .body("name", is(employeeName))
+                .body("position", is(updatedPosition));
+    }
+
+    @Test
+    public void testUpdateEmployeePositionFailureScenario_EmployeeNotExist() {
+        Long employeeId = 2000L;
+        String updatedPosition = "Sr. Software Engineering";
+
+        given()
+                .header("Content-Type", "application/json")
+                .pathParam("id", employeeId)
+                .body(updatedPosition)
+                .when().put("/employees/{id}")
+                .then()
+                .statusCode(204);
+    }
+
+    @Test
+    public void testRemoveEmployeeSuccessScenario() {
+        Long employeeId = 1L;
+        boolean isDeleted = true;
+
+        given()
+                .pathParam("id", employeeId)
+                .when().delete("/employees/{id}")
+                .then()
+                .statusCode(200)
+                .equals(isDeleted);
+    }
+
+    @Test
+    public void testRemoveEmployeeFailureScenario_employeeIDNotExist() {
+        Long employeeId = 10000L;
         boolean isDeleted = false;
 
         given()
                 .pathParam("id", employeeId)
-                .when().delete("/rest-client/{id}")
-                .then().statusCode(200).equals(isDeleted);
+                .when().delete("/employees/{id}")
+                .then()
+                .statusCode(200)
+                .equals(isDeleted);
 
     }
 
