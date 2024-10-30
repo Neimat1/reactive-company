@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URI;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -26,10 +25,14 @@ public class EmployeeRepository implements PanacheRepository<Employee> {
     }
 
     public Uni<Response> addEmployee(Employee employee) {
+        if (employee == null || employee.getId() != null
+                || employee.getDepartment() == null || employee.getDepartment().getId() == null || employee.getDepartment().getDepartmentName() == null)
+            return Uni.createFrom().item(getBadRequestStatus());
+
         return Panache.withTransaction(() -> persist(employee))
                 .onItem().transform(insertedEmployee ->
                         Response.created(URI.create("/employees/" + insertedEmployee.getId())).build()
-                ).onFailure().recoverWithItem(CallBackFailure());
+                ).onFailure().recoverWithItem(getCallBackFailure());
     }
 
 
@@ -55,8 +58,12 @@ public class EmployeeRepository implements PanacheRepository<Employee> {
     }
 
 
-    private Response CallBackFailure() {
+    private Response getCallBackFailure() {
         return Response.ok().entity("Down Time!!!").build();
+    }
+
+    private Response getBadRequestStatus() {
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
 }

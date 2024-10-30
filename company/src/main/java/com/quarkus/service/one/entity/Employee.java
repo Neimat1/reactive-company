@@ -1,5 +1,6 @@
 package com.quarkus.service.one.entity;
 
+import io.smallrye.common.constraint.NotNull;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class Employee{
     @Column(length = 64)
     private String position;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "department_name", referencedColumnName = "department_name")
     private Department department;
