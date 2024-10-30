@@ -30,7 +30,11 @@ public class RestClientServiceImpl implements RestClientService {
 
     @Override
     public Uni<Response> addEmployee(Employee employee) {
-        return companyClient.addEmployee(employee).onFailure().recoverWithItem(CallBackFailure());
+        if (employee == null || employee.getId() != null
+                || employee.getDepartment() == null || employee.getDepartment().getId() == null || employee.getDepartment().getDepartmentName() == null)
+            return Uni.createFrom().item(getBadRequestStatus());
+
+        return companyClient.addEmployee(employee).onFailure().recoverWithItem(getCallBackFailure());
     }
 
     @Override
@@ -43,8 +47,12 @@ public class RestClientServiceImpl implements RestClientService {
         return companyClient.removeEmployee(employeeId).onFailure().recoverWithNull();
     }
 
-    private Response CallBackFailure() {
+    private Response getCallBackFailure() {
         return Response.ok().entity("Down Time!!!").build();
+    }
+
+    private Response getBadRequestStatus() {
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
 }
