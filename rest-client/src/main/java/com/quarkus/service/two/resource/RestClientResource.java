@@ -15,8 +15,8 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 
 import java.util.List;
 
@@ -65,7 +65,7 @@ public class RestClientResource {
     @Operation(
             summary = "Update Employee position by it's id",
             description = "Return all employees ")
-    public Uni<Employee> updateEmployeePosition(@PathParam("id") Long id, String updatedPosition) {
+    public Uni<Employee> updateEmployeePosition(@PathParam("id") Long id,@RequestBody String updatedPosition) {
         return restClientService.updateEmployeePosition(id, updatedPosition);
     }
 
